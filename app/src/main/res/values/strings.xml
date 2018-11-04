@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProjetoMDS</string>
+
+    <string name="text_fragment_a">Esta é a fragment A da Tab A</string>
+    <string name="text_fragment_b">Esta é a fragment B da Tab B</string>
+
+    <string-array name="titles_tab">
+        <item>Tab A</item>
+        <item>Tab B</item>
+    </string-array>
+
+</resources>
