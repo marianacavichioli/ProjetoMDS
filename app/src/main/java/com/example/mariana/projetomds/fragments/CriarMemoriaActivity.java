@@ -8,10 +8,16 @@ import android.view.ViewGroup;
 
 import com.example.mariana.projetomds.R;
 
+import butterknife.ButterKnife;
+
 public class CriarMemoriaActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.fragment_criar, container, false);
+        View view =  inflater.inflate(R.layout.fragment_criar, container, false);
+
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 }

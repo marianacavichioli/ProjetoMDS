@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.example.mariana.projetomds.adapters.AbasAdapter;
 import com.example.mariana.projetomds.fragments.MapaActivity;
 import com.example.mariana.projetomds.fragments.CriarMemoriaActivity;
-import com.example.mariana.projetomds.fragments.MinhasMemoriasActivity;
+import com.example.mariana.projetomds.fragments.lista_memorias.MinhasMemoriasActivity;
 
 public class MainActivity extends AppCompatActivity {
 
