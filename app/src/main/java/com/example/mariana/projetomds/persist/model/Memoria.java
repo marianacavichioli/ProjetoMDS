@@ -1,6 +1,6 @@
-package com.example.mariana.projetomds.fragments.lista_memorias;
+package com.example.mariana.projetomds.persist.model;
 
-public class MinhasMemoriasEntity {
+public class Memoria {
     private long id;
     private String nome;
     private String imagem;
@@ -35,7 +35,4 @@ public class MinhasMemoriasEntity {
         return data;
     }
     public void setData(String data){this.data = data;}
-
-
-
 }

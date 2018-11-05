@@ -1,10 +1,11 @@
-package com.example.mariana.projetomds;
+package com.example.mariana.projetomds.activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.adapters.AbasAdapter;
 import com.example.mariana.projetomds.fragments.MapaActivity;
 import com.example.mariana.projetomds.fragments.CriarMemoriaActivity;

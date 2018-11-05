@@ -1,7 +1,9 @@
-package com.example.mariana.projetomds;
+package com.example.mariana.projetomds.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.mariana.projetomds.R;
 
 public class MinhasMemoriasDetailActivity extends AppCompatActivity {
 

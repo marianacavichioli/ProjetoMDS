@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mariana.projetomds.R;
+import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.util.List;
 
@@ -18,11 +19,11 @@ import butterknife.OnClick;
 
 public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAdapter.ViewHolder>{
 
-    protected List<MinhasMemoriasEntity> memoriaList;
+    protected List<Memoria> memoriaList;
     private OnRecyclerViewSelectedMemorias onRecyclerViewSelectedMemorias;
     private MinhasMemoriasActivity context;
 
-    MinhasMemoriasAdapter(List<MinhasMemoriasEntity> memoriaList, MinhasMemoriasActivity context){
+    MinhasMemoriasAdapter(List<Memoria> memoriaList, MinhasMemoriasActivity context){
         this.memoriaList = memoriaList;
         this.context = context;
     }
@@ -37,10 +38,10 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
     //seta os dados nas views
     @Override
     public void onBindViewHolder(MinhasMemoriasAdapter.ViewHolder holder, int position) {
-        MinhasMemoriasEntity minhasMemoriasEntity = memoriaList.get(position);
-        holder.nome_memoria.setText(minhasMemoriasEntity.getNome());
-        holder.local.setText(minhasMemoriasEntity.getLocal());
-        holder.data.setText(minhasMemoriasEntity.getData());
+        Memoria minhasMemorias = memoriaList.get(position);
+        holder.nome_memoria.setText(minhasMemorias.getNome());
+        holder.local.setText(minhasMemorias.getLocal());
+        holder.data.setText(minhasMemorias.getData());
     }
 
     @Override

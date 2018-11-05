@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mariana.projetomds.MinhasMemoriasDetailActivity;
+import com.example.mariana.projetomds.activities.MinhasMemoriasDetailActivity;
 import com.example.mariana.projetomds.R;
+import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
+import com.example.mariana.projetomds.persist.model.Memoria;
+
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,17 +38,15 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
         ButterKnife.bind(this, view);
 
         minhasMemoriasPresenter = new MinhasMemoriasPresenter(this);
+        MemoriaDAO memoriaDAO = new MemoriaDAO(context);
+        List<Memoria> memoriasList = memoriaDAO.getMemorias(); //Banco de dados
 
-        //Verificar como pegar os dados cadastrados no outro Fragment
-
-//        Intent intent = getIntent();
-//        tipo_atividade = intent.getIntExtra("tipo_atividade",-1);
-//        minhasMemoriasPresenter.updateList(memoriasList);
+        minhasMemoriasPresenter.updateList(memoriasList);
 
         return view;
     }
 
-    public void updateList(final List<MinhasMemoriasEntity> memoriasList) {
+    public void updateList(final List<Memoria> memoriasList) {
 
         //seta o adapter
         MinhasMemoriasAdapter memoriasAdapter = new MinhasMemoriasAdapter(memoriasList, this);
