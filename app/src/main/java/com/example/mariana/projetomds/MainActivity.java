@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.mariana.projetomds.adapters.AbasAdapter;
 import com.example.mariana.projetomds.fragments.MapaActivity;
 import com.example.mariana.projetomds.fragments.CriarMemoriaActivity;
+import com.example.mariana.projetomds.fragments.MinhasMemoriasActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +20,15 @@ public class MainActivity extends AppCompatActivity {
         AbasAdapter adapter = new AbasAdapter( getSupportFragmentManager() );
         adapter.adicionar( new MapaActivity() , "Mapa");
         adapter.adicionar( new CriarMemoriaActivity(), "Criar Memória");
-        adapter.adicionar( new CriarMemoriaActivity(), "Minhas Memórias");
+        adapter.adicionar( new MinhasMemoriasActivity(), "Minhas Memórias");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
         tabLayout.setupWithViewPager(viewPager);
+
+        //Colocar ícone
+        //tabLayout.getTabAt(0).setIcon(R.drawable.icone);
     }
 }

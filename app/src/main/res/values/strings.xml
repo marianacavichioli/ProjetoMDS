@@ -1,12 +1,16 @@
 <resources>
-    <string name="app_name">ProjetoMDS</string>
+    <string name="app_name">Memory Keeper</string>
 
     <string name="text_fragment_a">Esta é a fragment A da Tab A</string>
     <string name="text_fragment_b">Esta é a fragment B da Tab B</string>
+    <string name="text_fragment_c">Esta é a fragment C da Tab C</string>
+
+    <string name="teste">TESTE</string>
 
     <string-array name="titles_tab">
         <item>Tab A</item>
         <item>Tab B</item>
+        <item>Tab C</item>
     </string-array>
 
 </resources>
