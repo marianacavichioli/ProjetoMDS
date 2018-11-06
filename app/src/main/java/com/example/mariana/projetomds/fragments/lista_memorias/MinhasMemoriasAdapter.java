@@ -21,12 +21,13 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
 
     protected List<Memoria> memoriaList;
     private OnRecyclerViewSelectedMemorias onRecyclerViewSelectedMemorias;
-    private MinhasMemoriasActivity context;
+    private Context context;
 
-    MinhasMemoriasAdapter(List<Memoria> memoriaList, MinhasMemoriasActivity context){
+    MinhasMemoriasAdapter(List<Memoria> memoriaList, Context context){
         this.memoriaList = memoriaList;
         this.context = context;
     }
+
 
     //infla o componente view
     @Override
@@ -39,6 +40,9 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
     @Override
     public void onBindViewHolder(MinhasMemoriasAdapter.ViewHolder holder, int position) {
         Memoria minhasMemorias = memoriaList.get(position);
+
+        System.out.println(minhasMemorias.getNome());
+
         holder.nome_memoria.setText(minhasMemorias.getNome());
         holder.local.setText(minhasMemorias.getLocal());
         holder.data.setText(minhasMemorias.getData());

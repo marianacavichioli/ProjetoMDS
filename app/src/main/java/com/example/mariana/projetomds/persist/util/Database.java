@@ -8,7 +8,7 @@ public class Database extends SQLiteOpenHelper{
 
     private Context context;
     private static final int VERSAO = 1;
-    private static final String NOME_BANCO = "memory_keeper.db";
+    private static final String NOME_BANCO = "memorykeeper.db";
 
 
     public Database(Context context) {
@@ -28,12 +28,11 @@ public class Database extends SQLiteOpenHelper{
     }
 
     private String getSQLCreateTableMemorias() {
-        String sql = "CREATE TABLE memoria ( " +
+        String sql = "CREATE TABLE memoria( " +
                 "id integer primary key autoincrement, " +
                 "nome text, " +
                 "local text, " +
-                "data text, " +
-                " imagem text, )";
+                "data text )";
         return sql;
     }
 }

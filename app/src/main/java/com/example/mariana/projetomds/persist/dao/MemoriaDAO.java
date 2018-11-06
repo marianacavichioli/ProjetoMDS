@@ -29,7 +29,7 @@ public class MemoriaDAO {
         values.put("nome", memoria.getNome());
         values.put("local", memoria.getLocal());
         values.put("data", memoria.getData());
-        values.put("imagem", memoria.getImagem());
+//        values.put("imagem", memoria.getImagem());
 
         long result = db.insert(TABLE, null, values);
         db.close();
@@ -43,11 +43,11 @@ public class MemoriaDAO {
 
     public ArrayList<Memoria> getMemorias() {
 
-        ArrayList<Memoria>  list = new ArrayList<Memoria>();
+        ArrayList<Memoria> list = new ArrayList<Memoria>();
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "data", "imagem"};
+        String[] campos = {"id", "nome", "local", "data"};
 
         Cursor cursor = db.query(TABLE, campos, null, null, null, null, "nome");
 
@@ -59,7 +59,7 @@ public class MemoriaDAO {
                 memoria.setNome(cursor.getString(1));
                 memoria.setLocal(cursor.getString(2));
                 memoria.setData(cursor.getString(3));
-                memoria.setImagem(cursor.getString(4));
+//                memoria.setImagem(cursor.getString(4));
                 list.add(memoria);
             }
         }
@@ -67,5 +67,14 @@ public class MemoriaDAO {
         db.close();
 
         return list;
+    }
+
+    public void popularMemorias() {
+        Memoria memoria = new Memoria();
+
+        memoria.setNome("Ricardo Pereira");
+        memoria.setLocal("Ricardo");
+        memoria.setData("23/02/2010");
+        this.insert(memoria);
     }
 }

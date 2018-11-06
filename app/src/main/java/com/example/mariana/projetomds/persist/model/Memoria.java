@@ -1,16 +1,16 @@
 package com.example.mariana.projetomds.persist.model;
 
 public class Memoria {
-    private long id;
+    private int id;
     private String nome;
-    private String imagem;
+//    private String imagem;
     private String local;
     private String data;
 
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -19,10 +19,10 @@ public class Memoria {
     }
     public void setNome(String nome){this.nome = nome;}
 
-    public String getImagem () {
-        return imagem;
-    }
-    public void setImagem(String imagem){this.imagem = imagem;}
+//    public String getImagem () {
+//        return imagem;
+//    }
+//    public void setImagem(String imagem){this.imagem = imagem;}
 
 
     public String getLocal() {

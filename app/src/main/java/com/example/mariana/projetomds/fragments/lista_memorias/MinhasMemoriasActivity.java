@@ -17,6 +17,7 @@ import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
 
+import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,9 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
         ButterKnife.bind(this, view);
 
         minhasMemoriasPresenter = new MinhasMemoriasPresenter(this);
+
+        Context context = getActivity();
+
         MemoriaDAO memoriaDAO = new MemoriaDAO(context);
         List<Memoria> memoriasList = memoriaDAO.getMemorias(); //Banco de dados
 
@@ -49,7 +53,7 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
     public void updateList(final List<Memoria> memoriasList) {
 
         //seta o adapter
-        MinhasMemoriasAdapter memoriasAdapter = new MinhasMemoriasAdapter(memoriasList, this);
+        MinhasMemoriasAdapter memoriasAdapter = new MinhasMemoriasAdapter(memoriasList, context); //Context está certo?
 
         memoriasAdapter.setOnRecyclerViewSelectedMemorias(new OnRecyclerViewSelectedMemorias() {
             @Override
@@ -68,10 +72,12 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
         rvMemorias.setAdapter(memoriasAdapter);
 
         // criação do gerenciador de layouts
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        DividerItemDecoration dividerItemDecoration =
-                new DividerItemDecoration(context, layoutManager.getOrientation());
-        rvMemorias.setLayoutManager(layoutManager);
-        rvMemorias.addItemDecoration(dividerItemDecoration);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+//        DividerItemDecoration dividerItemDecoration =
+//                new DividerItemDecoration(context, layoutManager.getOrientation());
+//        rvMemorias.setLayoutManager(layoutManager);
+//        rvMemorias.addItemDecoration(dividerItemDecoration);
     }
+
+
 }
