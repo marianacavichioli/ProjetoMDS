@@ -69,11 +69,41 @@ public class MemoriaDAO {
         return list;
     }
 
+    public Memoria getMemoriaId(int id) {
+
+        db = database.getReadableDatabase();
+
+        String[] campos = {"id", "nome", "local", "data"};
+
+        Cursor cursor = db.query(TABLE, campos, "id=?", new String[] { Integer.toString(id) }, null, null, "nome");
+
+        if(cursor==null) {
+            db.close();
+            return null;
+        }
+
+        cursor.moveToFirst();
+        Memoria memoria = new Memoria();
+        memoria.setId(cursor.getInt(0));
+        memoria.setNome(cursor.getString(1));
+        memoria.setLocal(cursor.getString(2));
+        memoria.setData(cursor.getString(3));
+
+        db.close();
+
+        return memoria;
+    }
+
     public void popularMemorias() {
         Memoria memoria = new Memoria();
 
         memoria.setNome("Ricardo Pereira");
-        memoria.setLocal("Ricardo");
+        memoria.setLocal("São Carlos");
+        memoria.setData("23/02/2010");
+        this.insert(memoria);
+
+        memoria.setNome("Mariana Cavichioli");
+        memoria.setLocal("Matão");
         memoria.setData("23/02/2010");
         this.insert(memoria);
     }

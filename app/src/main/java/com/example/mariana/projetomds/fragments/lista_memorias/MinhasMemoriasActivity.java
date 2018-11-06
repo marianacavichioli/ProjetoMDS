@@ -12,12 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mariana.projetomds.activities.MinhasMemoriasDetailActivity;
+import com.example.mariana.projetomds.activities.memorias_detail.MinhasMemoriasDetailActivity;
 import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
 
-import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,10 +58,8 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
             @Override
             public void onClick(View view, int position) {
 
-                FragmentActivity MinhasMemoriasActivity = getActivity(); //Não sei se ta certo
-
                 Intent intent = new Intent
-                        (MinhasMemoriasActivity, MinhasMemoriasDetailActivity.class);
+                        (getActivity(), MinhasMemoriasDetailActivity.class);
                 intent.putExtra("memoria_id", memoriasList.get(position).getId());
                 startActivity(intent);
             }
@@ -73,6 +70,7 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
 
         // criação do gerenciador de layouts
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+
         DividerItemDecoration dividerItemDecoration =
                 new DividerItemDecoration(context, layoutManager.getOrientation());
         rvMemorias.setLayoutManager(layoutManager);

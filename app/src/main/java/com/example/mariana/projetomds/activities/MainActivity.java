@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AbasAdapter adapter = new AbasAdapter( getSupportFragmentManager() );
-        adapter.adicionar( new MapaActivity() , "Mapa");
-        adapter.adicionar( new CriarMemoriaActivity(), "Criar Memória");
-        adapter.adicionar( new MinhasMemoriasActivity(), "Minhas Memórias");
+        adapter.adicionar( new MapaActivity() , "");
+        adapter.adicionar( new CriarMemoriaActivity(), "");
+        adapter.adicionar( new MinhasMemoriasActivity(), "");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         popularMemorias(this);
 
-        //Colocar ícone
-        //tabLayout.getTabAt(0).setIcon(R.drawable.icone);
+        //Colocar ícones melhores
+        tabLayout.getTabAt(0).setIcon(R.drawable.icons8marcadordemapafilled50);
+        tabLayout.getTabAt(1).setIcon(R.drawable.icons8maisfilled50);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icons8listafilled50);
     }
 
     public void popularMemorias(Context contexto){
