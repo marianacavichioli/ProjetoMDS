@@ -22,7 +22,7 @@ public class MinhasMemoriasPresenter {
             minhasMemoriasView.updateList(memoriasList);
         }
         else{
-            Toast.makeText(context,"Erro ao carregar lista",Toast.LENGTH_LONG);
+            Toast.makeText(context,"Erro ao carregar lista",Toast.LENGTH_LONG).show();
         }
 
     }

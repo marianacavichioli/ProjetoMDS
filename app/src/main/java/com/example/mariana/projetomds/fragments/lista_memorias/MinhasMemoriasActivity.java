@@ -40,7 +40,7 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
 
         minhasMemoriasPresenter = new MinhasMemoriasPresenter(this);
 
-        Context context = getActivity();
+        context = getActivity();
 
         MemoriaDAO memoriaDAO = new MemoriaDAO(context);
         List<Memoria> memoriasList = memoriaDAO.getMemorias(); //Banco de dados
@@ -72,11 +72,11 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
         rvMemorias.setAdapter(memoriasAdapter);
 
         // criação do gerenciador de layouts
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-//        DividerItemDecoration dividerItemDecoration =
-//                new DividerItemDecoration(context, layoutManager.getOrientation());
-//        rvMemorias.setLayoutManager(layoutManager);
-//        rvMemorias.addItemDecoration(dividerItemDecoration);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        DividerItemDecoration dividerItemDecoration =
+                new DividerItemDecoration(context, layoutManager.getOrientation());
+        rvMemorias.setLayoutManager(layoutManager);
+        rvMemorias.addItemDecoration(dividerItemDecoration);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.mariana.projetomds.fragments;
+package com.example.mariana.projetomds.fragments.mapa;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

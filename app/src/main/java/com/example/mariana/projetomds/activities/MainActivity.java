@@ -8,8 +8,8 @@ import android.os.Bundle;
 
 import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.adapters.AbasAdapter;
-import com.example.mariana.projetomds.fragments.MapaActivity;
-import com.example.mariana.projetomds.fragments.CriarMemoriaActivity;
+import com.example.mariana.projetomds.fragments.mapa.MapaActivity;
+import com.example.mariana.projetomds.fragments.criar_memoria.CriarMemoriaActivity;
 import com.example.mariana.projetomds.fragments.lista_memorias.MinhasMemoriasActivity;
 import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
@@ -48,4 +48,18 @@ public class MainActivity extends AppCompatActivity {
         //if(listMemorias.size() <= 0)
         memoriaDAO.popularMemorias();
     }
+
+//Colocar diferente para cada Fragment
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_cadastro_template1, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+//    }
+
 }
