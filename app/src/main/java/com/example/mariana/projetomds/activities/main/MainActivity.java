@@ -1,10 +1,16 @@
-package com.example.mariana.projetomds.activities;
+package com.example.mariana.projetomds.activities.main;
 
+import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.adapters.AbasAdapter;
@@ -16,12 +22,18 @@ import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView{
+
+    MainPresenter mainPresenter;
+    MemoriaDAO memoriaDAO;
+    Memoria memoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainPresenter = new MainPresenter(this);
 
         AbasAdapter adapter = new AbasAdapter( getSupportFragmentManager() );
         adapter.adicionar( new MapaActivity() , "");
@@ -34,34 +46,42 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
         tabLayout.setupWithViewPager(viewPager);
 
-        popularMemorias(this);
+        mainPresenter.popularMemorias(this);
 
         //Colocar ícones melhores
         tabLayout.getTabAt(0).setIcon(R.drawable.icons8marcadordemapafilled50);
         tabLayout.getTabAt(1).setIcon(R.drawable.icons8maisfilled50);
         tabLayout.getTabAt(2).setIcon(R.drawable.icons8listafilled50);
+
     }
 
-    public void popularMemorias(Context contexto){
-        MemoriaDAO memoriaDAO = new MemoriaDAO(this);
-
-        ArrayList<Memoria> listMemorias = memoriaDAO.getMemorias();
-
-        //if(listMemorias.size() <= 0)
-        memoriaDAO.popularMemorias();
-    }
-
-//Colocar diferente para cada Fragment
+    //Colocar diferente para cada Fragment
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_cadastro_template1, menu);
+//        getMenuInflater().inflate(R.menu.menu_salvar_memoria, menu);
 //        return super.onCreateOptionsMenu(menu);
 //    }
 //
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
-//        return super.onOptionsItemSelected(item);
+//        switch (item.getItemId()) {
+//            case R.id.action_salvar:
+//                mainPresenter.cadastrarMemoria();
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+//    @Override
+//    public void abrirMainActivity() {
+//        memoria.setAtiva(Memoria.SITUACAO_ATIVA);
+//        memoriaDAO.update(memoria);
+//        Toast.makeText(MainActivity.this, "Memoria cadastrada com sucesso", Toast.LENGTH_LONG).show();
+//        Intent abrirDetalhes = new Intent(MainActivity.this, AtividadesDetailActivity.class);
+//        abrirDetalhes.putExtra("memoria_id", memoria.getId());
+//        startActivity(abrirDetalhes);
+//        finish();
 //    }
 
 }

@@ -41,10 +41,7 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
 
         context = getActivity();
 
-        MemoriaDAO memoriaDAO = new MemoriaDAO(context);
-        List<Memoria> memoriasList = memoriaDAO.getMemorias(); //Banco de dados
-
-        minhasMemoriasPresenter.updateList(memoriasList);
+        minhasMemoriasPresenter.memoriasList(context);
 
         return view;
     }

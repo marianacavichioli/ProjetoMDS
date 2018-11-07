@@ -41,8 +41,6 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
     public void onBindViewHolder(MinhasMemoriasAdapter.ViewHolder holder, int position) {
         Memoria minhasMemorias = memoriaList.get(position);
 
-        System.out.println(minhasMemorias.getNome());
-
         holder.nome_memoria.setText(minhasMemorias.getNome());
         holder.local.setText(minhasMemorias.getLocal());
         holder.data.setText(minhasMemorias.getData());
