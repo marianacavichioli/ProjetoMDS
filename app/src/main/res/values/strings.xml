@@ -12,5 +12,7 @@
         <item>Tab B</item>
         <item>Tab C</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_api_key">AIzaSyBeOH8bAT_MwJ5QkzFe_kTVnF86SoZJHuQ</string>
 
 </resources>
