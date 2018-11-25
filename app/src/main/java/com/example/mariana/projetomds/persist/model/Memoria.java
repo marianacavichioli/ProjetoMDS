@@ -4,7 +4,7 @@ public class Memoria {
     private int id;
     private String nome;
 //    private String imagem;
-    private String local;
+    private String local; // TODO: mudar para latitude e longitude
     private String data;
 
     public int getId() {

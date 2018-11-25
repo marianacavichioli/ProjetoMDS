@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mariana.projetomds.R;
+import com.example.mariana.projetomds.fragments.criar_memoria.CriarMemoriaPresenter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -26,16 +27,24 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 
-public class MapaActivity extends Fragment implements OnMapReadyCallback {
-//public class MapaActivity extends Fragment {
+import butterknife.ButterKnife;
+
+public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaView {
 
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
 
+    MapaPresenter mapaPresenter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         mView = inflater.inflate(R.layout.fragment_mapa, container, false);
+
+        ButterKnife.bind(this, mView);
+
+        mapaPresenter = new MapaPresenter(this);
+
         return mView;
     }
 
@@ -44,14 +53,13 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMapView = (MapView) mView.findViewById(R.id.map); // TODO: colocar na forma bind la
+        mMapView = (MapView) mView.findViewById(R.id.map);
         if(mMapView != null){
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
 
         }
-
     }
 
     @Override
@@ -60,13 +68,13 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap = googleMap;
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247, -74.044502)).title("State of Liberty") .snippet("I hope to go there some day"));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(-21.97972238, -47.88054228)).title("Melhor departamento") .snippet("O melhor departamento da UFSCar"));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(-21.98002085, -47.87833214)).title("Observatório") .snippet("Lindo observar tudo"));
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        mapaPresenter.updateMarkers(mGoogleMap);
+
+        //TODO: aqui ta fixo nesse exemplo, depois ver se vai colocar na ultima memoria, seja o que for (talvez levar pra dentro da funcao updateMarkers
         CameraPosition DC = CameraPosition.builder().target(new LatLng(-21.97972238, -47.88054228)).zoom(16).bearing(0).tilt(45).build();
-
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(DC));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(DC));
     }
+
 }
