@@ -3,10 +3,13 @@ package com.example.mariana.projetomds.activities.main;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements MainView{
         adapter.adicionar( new MapaActivity() , "");
         adapter.adicionar( new CriarMemoriaActivity(), "");
         adapter.adicionar( new MinhasMemoriasActivity(), "");
+
+
+//        MapaActivity mapaFragment = (MapaActivity) getFragmentManager().findFragmentById(R.id);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
