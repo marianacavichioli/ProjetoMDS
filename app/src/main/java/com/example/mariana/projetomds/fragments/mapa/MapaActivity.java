@@ -220,4 +220,8 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
         return false;
     }
 
+    public Location getLocalizacaoAtual(){
+        return mLastKnownLocation;
+    }
+
 }

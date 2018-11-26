@@ -1,22 +1,49 @@
 package com.example.mariana.projetomds.fragments.criar_memoria;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.mariana.projetomds.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView{
+public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.View{
+
+    @BindView(R.id.imagem_memoria)
+    ImageView imageView;
+
+    @BindView(R.id.titulo)
+    EditText titulo;
+
+    @BindView(R.id.descricao)
+    EditText descricao;
+
+    String selectedImagePath;
 
     CriarMemoriaPresenter criarMemoriaPresenter;
+
+    Location localizacaoAtual;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -24,9 +51,63 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView{
 
         ButterKnife.bind(this, view);
 
-        criarMemoriaPresenter = new CriarMemoriaPresenter(this);
+        selectedImagePath = new String();
+
+        criarMemoriaPresenter = new CriarMemoriaPresenter(getContext(), this);
 
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        criarMemoriaPresenter.verificaResultado(requestCode, resultCode, data);
+    }
+
+    public void setLocalizacao(Location localizacao){
+        this.localizacaoAtual = localizacao;
+        //Log.d("TO LOC", "to aqui dentro " + localizacao);
+    }
+
+    @OnClick(R.id.btn_galeria)
+    public void acessarGaleria() {
+        criarMemoriaPresenter.abrirGaleria();
+    }
+
+    @OnClick(R.id.btn_camera)
+    public void tirarFoto() {
+        criarMemoriaPresenter.tiraFoto();
+    }
+
+    @OnClick(R.id.botao_salvar)
+    public void salvar(){
+        criarMemoriaPresenter.cadastrar(titulo.getText().toString(), descricao.getText().toString(), selectedImagePath, localizacaoAtual.toString());
+    }
+
+    @Override
+    public void carregaImagem(String caminhoArquivo) {
+
+        selectedImagePath = caminhoArquivo;
+
+        Log.d("TO LOC", "to aqui dentro " + caminhoArquivo);
+
+        File imgFile = new  File(caminhoArquivo);
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),bmOptions);
+        imageView.setImageBitmap(bitmap);
+
+//        Picasso.get()
+//                .load(Uri.parse("file://" + caminhoArquivo))
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .fit()
+//                .placeholder(R.drawable.common_full_open_on_phone)
+//                .centerCrop()
+//                .into(imageView);
+
+    }
+
+    @Override
+    public void abreActivity(Intent intent, Integer codigo) {
+        startActivityForResult(intent, codigo);
+    }
 }

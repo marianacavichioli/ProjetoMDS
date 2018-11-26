@@ -3,9 +3,10 @@ package com.example.mariana.projetomds.persist.model;
 public class Memoria {
     private int id;
     private String nome;
-//    private String imagem;
+    private String imagem;
     private String local; // TODO: mudar para latitude e longitude
     private String data;
+    private String descricao;
 
     public int getId() {
         return id;
@@ -19,10 +20,10 @@ public class Memoria {
     }
     public void setNome(String nome){this.nome = nome;}
 
-//    public String getImagem () {
-//        return imagem;
-//    }
-//    public void setImagem(String imagem){this.imagem = imagem;}
+    public String getImagem () {
+        return imagem;
+    }
+    public void setImagem(String imagem){this.imagem = imagem;}
 
 
     public String getLocal() {
@@ -35,4 +36,12 @@ public class Memoria {
         return data;
     }
     public void setData(String data){this.data = data;}
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

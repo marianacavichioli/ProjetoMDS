@@ -47,7 +47,7 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        //imagem.set
+        //imagem
     }
 
     @Override

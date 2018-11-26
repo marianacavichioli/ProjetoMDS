@@ -32,7 +32,8 @@ public class Database extends SQLiteOpenHelper{
                 "id integer primary key autoincrement, " +
                 "nome text, " +
                 "local text, " +
-                "data text )";
+                "data text, " +
+                "imagem text )";
         return sql;
     }
 }

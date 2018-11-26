@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.mariana.projetomds.persist.model.Memoria;
 import com.example.mariana.projetomds.persist.util.Database;
@@ -29,7 +30,9 @@ public class MemoriaDAO {
         values.put("nome", memoria.getNome());
         values.put("local", memoria.getLocal());
         values.put("data", memoria.getData());
-//        values.put("imagem", memoria.getImagem());
+        values.put("imagem", memoria.getImagem());
+
+        //Log.d("TO LOC", "teoricamente salvou");
 
         long result = db.insert(TABLE, null, values);
         db.close();
@@ -47,7 +50,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "data"};
+        String[] campos = {"id", "nome", "local", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, null, null, null, null, "nome");
 
@@ -59,7 +62,7 @@ public class MemoriaDAO {
                 memoria.setNome(cursor.getString(1));
                 memoria.setLocal(cursor.getString(2));
                 memoria.setData(cursor.getString(3));
-//                memoria.setImagem(cursor.getString(4));
+                memoria.setImagem(cursor.getString(4));
                 list.add(memoria);
             }
         }
@@ -73,7 +76,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "data"};
+        String[] campos = {"id", "nome", "local", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, "id=?", new String[] { Integer.toString(id) }, null, null, "nome");
 
@@ -88,6 +91,7 @@ public class MemoriaDAO {
         memoria.setNome(cursor.getString(1));
         memoria.setLocal(cursor.getString(2));
         memoria.setData(cursor.getString(3));
+        memoria.setData(cursor.getString(4));
 
         db.close();
 
@@ -100,11 +104,13 @@ public class MemoriaDAO {
         memoria.setNome("Ricardo Pereira");
         memoria.setLocal("São Carlos");
         memoria.setData("23/02/2010");
+        memoria.setImagem("");
         this.insert(memoria);
 
         memoria.setNome("Mariana Cavichioli");
         memoria.setLocal("Matão");
         memoria.setData("23/02/2010");
+        memoria.setImagem("");
         this.insert(memoria);
     }
 }

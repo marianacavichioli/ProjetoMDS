@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,9 +56,48 @@ public class MainActivity extends AppCompatActivity implements MainView{
         mainPresenter.popularMemorias(this);
 
         //Colocar ícones melhores
-        tabLayout.getTabAt(0).setIcon(R.drawable.icons8marcadordemapafilled50);
-        tabLayout.getTabAt(1).setIcon(R.drawable.icons8maisfilled50);
-        tabLayout.getTabAt(2).setIcon(R.drawable.icons8listafilled50);
+        tabLayout.getTabAt(0).setIcon(R.drawable.icons8marcadordemapafilled50).setTag(0);
+        tabLayout.getTabAt(1).setIcon(R.drawable.icons8maisfilled50).setTag(1);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icons8listafilled50).setTag(2);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                FragmentManager fm = getSupportFragmentManager();
+
+                MapaActivity fragment = (MapaActivity)fm.findFragmentByTag("android:switcher:" + R.id.abas_view_pager + ":0");
+
+                CriarMemoriaActivity fragment2 = (CriarMemoriaActivity)fm.findFragmentByTag("android:switcher:" + R.id.abas_view_pager + ":1");
+
+
+                if (fragment.getLocalizacaoAtual() != null){
+                    fragment2.setLocalizacao(fragment.getLocalizacaoAtual());
+                    //Log.d("TO LOC", "to aqui 1 " + fragment.getLocalizacaoAtual());
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                FragmentManager fm = getSupportFragmentManager();
+
+                MapaActivity fragment = (MapaActivity)fm.findFragmentByTag("android:switcher:" + R.id.abas_view_pager + ":0");
+
+                CriarMemoriaActivity fragment2 = (CriarMemoriaActivity)fm.findFragmentByTag("android:switcher:" + R.id.abas_view_pager + ":1");
+
+
+                if (fragment.getLocalizacaoAtual() != null){
+                    fragment2.setLocalizacao(fragment.getLocalizacaoAtual());
+                    //Log.d("TO LOC", "to aqui 1 " + fragment.getLocalizacaoAtual());
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+              //  Log.d("TO LOC", "to aqui 3");
+            }
+        });
 
     }
 
