@@ -77,7 +77,7 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d("PERMISSION LOC", "to aqui vendo");
+//        Log.d("PERMISSION LOC", "to aqui vendo");
         mMapView = (MapView) mView.findViewById(R.id.map);
         if (mMapView != null) {
             mMapView.onCreate(null);
@@ -95,7 +95,8 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
 
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        mapaPresenter.updateMarkers(mGoogleMap);
+//        mapaPresenter.updateMarkers(mGoogleMap);
+        mapaPresenter.markersList(getContext(),mGoogleMap);
 
         getLocationPermission();
 
@@ -122,18 +123,18 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
                         if (task.isSuccessful()) {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = task.getResult();
-                            Log.d("PERMISSION LOC", "eh pra dar");
+//                            Log.d("PERMISSION LOC", "eh pra dar");
 
                             if (mLastKnownLocation != null) {
                                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(mLastKnownLocation.getLatitude(),
                                                 mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                                Log.d("PERMISSION LOC", "deuu");
+//                                Log.d("PERMISSION LOC", "deuu");
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
-                            Log.d("PERMISSION LOC", "nao deu acho nao");
+//                            Log.d("PERMISSION LOC", "nao deu acho nao");
 
                             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                             mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);

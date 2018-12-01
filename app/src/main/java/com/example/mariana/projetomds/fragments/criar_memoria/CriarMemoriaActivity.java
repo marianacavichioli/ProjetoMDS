@@ -80,7 +80,7 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     @OnClick(R.id.botao_salvar)
     public void salvar(){
-        criarMemoriaPresenter.cadastrar(titulo.getText().toString(), descricao.getText().toString(), selectedImagePath, localizacaoAtual.toString());
+        criarMemoriaPresenter.cadastrar(titulo.getText().toString(), descricao.getText().toString(), selectedImagePath, "PADRAO", localizacaoAtual.getLatitude(), localizacaoAtual.getLongitude());
     }
 
     @Override

@@ -32,6 +32,8 @@ public class Database extends SQLiteOpenHelper{
                 "id integer primary key autoincrement, " +
                 "nome text, " +
                 "local text, " +
+                "latitude real, " +
+                "longitude real, " +
                 "data text, " +
                 "imagem text )";
         return sql;

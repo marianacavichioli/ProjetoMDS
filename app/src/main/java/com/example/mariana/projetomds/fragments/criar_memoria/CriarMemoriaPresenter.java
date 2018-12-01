@@ -9,21 +9,16 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
 
@@ -91,7 +86,7 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
     }
 
     @Override
-    public void cadastrar(String titulo, String descricao, String imagePath, String local) {
+    public void cadastrar(String titulo, String descricao, String imagePath, String local, double latitude, double longitude) {
 
 
         Date currentTime = Calendar.getInstance().getTime();
@@ -100,6 +95,8 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         memoria.setNome(titulo);
         memoria.setDescricao(descricao);
         memoria.setLocal(local);
+        memoria.setLatitude(latitude);
+        memoria.setLongitude(longitude);
         memoria.setImagem(imagePath);
         memoria.setData(currentTime.toString());
 

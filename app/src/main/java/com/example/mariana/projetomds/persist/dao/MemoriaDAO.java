@@ -29,6 +29,8 @@ public class MemoriaDAO {
         ContentValues values = new ContentValues();
         values.put("nome", memoria.getNome());
         values.put("local", memoria.getLocal());
+        values.put("latitude", memoria.getLatitude());
+        values.put("longitude", memoria.getLongitude());
         values.put("data", memoria.getData());
         values.put("imagem", memoria.getImagem());
 
@@ -50,7 +52,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "data", "imagem"};
+        String[] campos = {"id", "nome", "local", "latitude", "longitude", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, null, null, null, null, "nome");
 
@@ -61,8 +63,10 @@ public class MemoriaDAO {
                 memoria.setId(cursor.getInt(0));
                 memoria.setNome(cursor.getString(1));
                 memoria.setLocal(cursor.getString(2));
-                memoria.setData(cursor.getString(3));
-                memoria.setImagem(cursor.getString(4));
+                memoria.setLatitude(cursor.getDouble(3));
+                memoria.setLongitude(cursor.getDouble(4));
+                memoria.setData(cursor.getString(5));
+                memoria.setImagem(cursor.getString(6));
                 list.add(memoria);
             }
         }
@@ -76,7 +80,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "data", "imagem"};
+        String[] campos = {"id", "nome", "local", "latitude", "longitude", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, "id=?", new String[] { Integer.toString(id) }, null, null, "nome");
 
@@ -90,8 +94,10 @@ public class MemoriaDAO {
         memoria.setId(cursor.getInt(0));
         memoria.setNome(cursor.getString(1));
         memoria.setLocal(cursor.getString(2));
-        memoria.setData(cursor.getString(3));
-        memoria.setData(cursor.getString(4));
+        memoria.setLatitude(cursor.getDouble(3));
+        memoria.setLongitude(cursor.getDouble(4));
+        memoria.setData(cursor.getString(5));
+        memoria.setImagem(cursor.getString(6));
 
         db.close();
 
@@ -103,12 +109,16 @@ public class MemoriaDAO {
 
         memoria.setNome("Ricardo Pereira");
         memoria.setLocal("São Carlos");
+        memoria.setLatitude(-121.97972238);
+        memoria.setLongitude(-47.88054228);
         memoria.setData("23/02/2010");
         memoria.setImagem("");
         this.insert(memoria);
 
         memoria.setNome("Mariana Cavichioli");
         memoria.setLocal("Matão");
+        memoria.setLatitude(-121.97972238);
+        memoria.setLongitude(-47.88054228);
         memoria.setData("23/02/2010");
         memoria.setImagem("");
         this.insert(memoria);

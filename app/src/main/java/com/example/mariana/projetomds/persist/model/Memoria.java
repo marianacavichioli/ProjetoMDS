@@ -4,7 +4,9 @@ public class Memoria {
     private int id;
     private String nome;
     private String imagem;
-    private String local; // TODO: mudar para latitude e longitude
+    private String local; // pegar a cidade (Place)
+    private double latitude;
+    private double longitude;
     private String data;
     private String descricao;
 
@@ -30,6 +32,17 @@ public class Memoria {
         return local;
     }
     public void setLocal(String local){this.local = local;}
+
+
+    public double getLatitude() {
+        return latitude;
+    }
+    public void setLatitude(double latitude){this.latitude = latitude;}
+
+    public double getLongitude() {
+        return longitude;
+    }
+    public void setLongitude(double longitude){this.longitude = longitude;}
 
 
     public String getData() {
