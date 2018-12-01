@@ -14,5 +14,7 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_api_key">AIzaSyBeOH8bAT_MwJ5QkzFe_kTVnF86SoZJHuQ</string>
+    <string name="salvar">Salvar</string>
+    <string name="insira_a_descri_o">Insira a Descrição</string>
 
 </resources>

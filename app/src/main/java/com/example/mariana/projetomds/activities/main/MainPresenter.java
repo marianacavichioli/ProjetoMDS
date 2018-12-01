@@ -15,11 +15,6 @@ public class MainPresenter {
         this.mainView = mainView;
     }
 
-    public void popularMemorias(Context contexto){
-        MemoriaDAO memoriaDAO = new MemoriaDAO(contexto);
-        //ArrayList<Memoria> listMemorias = memoriaDAO.getMemorias();
-        memoriaDAO.popularMemorias();
-    }
 
 //    @Override
 //    public void cadastrar(String titulo, String local, String data, Context context){

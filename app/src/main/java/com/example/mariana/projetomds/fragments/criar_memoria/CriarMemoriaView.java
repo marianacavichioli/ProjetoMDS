@@ -1,11 +1,12 @@
 package com.example.mariana.projetomds.fragments.criar_memoria;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 
 public interface CriarMemoriaView {
 
     interface View {
-        void carregaImagem(String caminhoArquivo);
+        void carregaImagem(Bitmap caminhoArquivo);
         void abreActivity(Intent intent, Integer codigo);
     }
 

@@ -1,18 +1,15 @@
 package com.example.mariana.projetomds.fragments.criar_memoria;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -22,7 +19,7 @@ import com.example.mariana.projetomds.R;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +36,9 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
     @BindView(R.id.descricao)
     EditText descricao;
 
+    @BindView(R.id.abas_view_pager)
+            TabLayout tabLayout;
+
     String selectedImagePath;
 
     CriarMemoriaPresenter criarMemoriaPresenter;
@@ -51,9 +51,7 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
         ButterKnife.bind(this, view);
 
-        selectedImagePath = new String();
-
-        criarMemoriaPresenter = new CriarMemoriaPresenter(getContext(), this);
+        criarMemoriaPresenter = new CriarMemoriaPresenter(getActivity(), this);
 
         return view;
     }
@@ -84,20 +82,22 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
     }
 
     @Override
-    public void carregaImagem(String caminhoArquivo) {
+    public void carregaImagem(Bitmap caminhoArquivo) {
 
-        selectedImagePath = caminhoArquivo;
+        imageView.setImageBitmap(caminhoArquivo);
 
-        Log.d("TO LOC", "to aqui dentro " + caminhoArquivo);
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        caminhoArquivo.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String selectedImagePath= Base64.encodeToString(b, Base64.DEFAULT);
 
-        File imgFile = new  File(caminhoArquivo);
-
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),bmOptions);
-        imageView.setImageBitmap(bitmap);
+//        File imgFile = new  File(caminhoArquivo);
+//
+//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),bmOptions);
 
 //        Picasso.get()
-//                .load(Uri.parse("file://" + caminhoArquivo))
+//                .load(Uri.parse(selectedImagePath))
 //                .memoryPolicy(MemoryPolicy.NO_CACHE)
 //                .fit()
 //                .placeholder(R.drawable.common_full_open_on_phone)

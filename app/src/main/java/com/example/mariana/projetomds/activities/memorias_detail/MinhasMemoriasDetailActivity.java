@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.persist.model.Memoria;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +27,8 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     TextView local;
     @BindView(R.id.data)
     TextView data;
+    @BindView(R.id.imagem)
+    ImageView imagem;
 
     int memoriaId;
     MinhasMemoriasDetailPresenter minhasMemoriasDetailPresenter;
@@ -47,7 +51,14 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        //imagem
+        //imagem.setText(memoria.getImagem());
+        Picasso.get()
+                .load(memoria.getImagem())
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .fit()
+                .placeholder(R.drawable.common_full_open_on_phone)
+                .centerCrop()
+                .into(imagem);
     }
 
     @Override

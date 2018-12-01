@@ -26,16 +26,19 @@ import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity implements MainView{
 
     MainPresenter mainPresenter;
-    MemoriaDAO memoriaDAO;
-    Memoria memoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         mainPresenter = new MainPresenter(this);
 
@@ -44,18 +47,12 @@ public class MainActivity extends AppCompatActivity implements MainView{
         adapter.adicionar( new CriarMemoriaActivity(), "");
         adapter.adicionar( new MinhasMemoriasActivity(), "");
 
-
-//        MapaActivity mapaFragment = (MapaActivity) getFragmentManager().findFragmentById(R.id);
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
         tabLayout.setupWithViewPager(viewPager);
 
-        mainPresenter.popularMemorias(this);
-
-        //Colocar ícones melhores
         tabLayout.getTabAt(0).setIcon(R.drawable.icons8marcadordemapafilled50).setTag(0);
         tabLayout.getTabAt(1).setIcon(R.drawable.icons8maisfilled50).setTag(1);
         tabLayout.getTabAt(2).setIcon(R.drawable.icons8listafilled50).setTag(2);
@@ -73,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
                 if (fragment.getLocalizacaoAtual() != null){
                     fragment2.setLocalizacao(fragment.getLocalizacaoAtual());
-                    //Log.d("TO LOC", "to aqui 1 " + fragment.getLocalizacaoAtual());
                 }
 
             }
@@ -89,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
                 if (fragment.getLocalizacaoAtual() != null){
                     fragment2.setLocalizacao(fragment.getLocalizacaoAtual());
-                    //Log.d("TO LOC", "to aqui 1 " + fragment.getLocalizacaoAtual());
                 }
             }
 
@@ -100,34 +95,4 @@ public class MainActivity extends AppCompatActivity implements MainView{
         });
 
     }
-
-    //Colocar diferente para cada Fragment
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_salvar_memoria, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_salvar:
-//                mainPresenter.cadastrarMemoria();
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-//    @Override
-//    public void abrirMainActivity() {
-//        memoria.setAtiva(Memoria.SITUACAO_ATIVA);
-//        memoriaDAO.update(memoria);
-//        Toast.makeText(MainActivity.this, "Memoria cadastrada com sucesso", Toast.LENGTH_LONG).show();
-//        Intent abrirDetalhes = new Intent(MainActivity.this, AtividadesDetailActivity.class);
-//        abrirDetalhes.putExtra("memoria_id", memoria.getId());
-//        startActivity(abrirDetalhes);
-//        finish();
-//    }
-
 }

@@ -41,20 +41,20 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
                 if(Activity.RESULT_OK == resultCode){
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    criarMemoriaView.carregaImagem(imageBitmap);
 
-                    Uri tempUri = getImageUri(context, imageBitmap);
-
-                    criarMemoriaView.carregaImagem(getRealPathFromURI(tempUri));
+//                    Uri tempUri = getImageUri(context, imageBitmap);
+//                    criarMemoriaView.carregaImagem(getRealPathFromURI(tempUri));
                 }
                 break;
 
-            case CODIGO_GALERIA:
-                if(Activity.RESULT_OK == resultCode){
-                    String caminhoDaImagem = getRealPathFromURI(data.getData());
-                    criarMemoriaView.carregaImagem(caminhoDaImagem);
-                }
-
-                break;
+//            case CODIGO_GALERIA:
+//                if(Activity.RESULT_OK == resultCode){
+//                    String caminhoDaImagem = getRealPathFromURI(data.getData());
+//                    criarMemoriaView.carregaImagem(caminhoDaImagem);
+//                }
+//
+//                break;
         }
 
     }
@@ -66,7 +66,6 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         Log.d("TO LOC", "to aqui dentro tirar foto");
 
         Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
 
         criarMemoriaView.abreActivity(intentCamera, CODIGO_CAMERA);
     }

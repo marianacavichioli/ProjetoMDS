@@ -34,8 +34,6 @@ public class MemoriaDAO {
         values.put("data", memoria.getData());
         values.put("imagem", memoria.getImagem());
 
-        //Log.d("TO LOC", "teoricamente salvou");
-
         long result = db.insert(TABLE, null, values);
         db.close();
 
@@ -104,23 +102,4 @@ public class MemoriaDAO {
         return memoria;
     }
 
-    public void popularMemorias() {
-        Memoria memoria = new Memoria();
-
-        memoria.setNome("Ricardo Pereira");
-        memoria.setLocal("São Carlos");
-        memoria.setLatitude(-121.97972238);
-        memoria.setLongitude(-47.88054228);
-        memoria.setData("23/02/2010");
-        memoria.setImagem("");
-        this.insert(memoria);
-
-        memoria.setNome("Mariana Cavichioli");
-        memoria.setLocal("Matão");
-        memoria.setLatitude(-121.97972238);
-        memoria.setLongitude(-47.88054228);
-        memoria.setData("23/02/2010");
-        memoria.setImagem("");
-        this.insert(memoria);
-    }
 }
