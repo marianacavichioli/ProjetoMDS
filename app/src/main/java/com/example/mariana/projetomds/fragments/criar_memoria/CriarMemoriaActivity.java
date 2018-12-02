@@ -2,6 +2,7 @@ package com.example.mariana.projetomds.fragments.criar_memoria;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,9 +37,6 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     @BindView(R.id.descricao)
     EditText descricao;
-
-    @BindView(R.id.abas_view_pager)
-            TabLayout tabLayout;
 
     String selectedImagePath;
 
@@ -63,7 +62,6 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     public void setLocalizacao(Location localizacao){
         this.localizacaoAtual = localizacao;
-        //Log.d("TO LOC", "to aqui dentro " + localizacao);
     }
 
     @OnClick(R.id.btn_galeria)
@@ -83,27 +81,7 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     @Override
     public void carregaImagem(Bitmap caminhoArquivo) {
-
         imageView.setImageBitmap(caminhoArquivo);
-
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        caminhoArquivo.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String selectedImagePath= Base64.encodeToString(b, Base64.DEFAULT);
-
-//        File imgFile = new  File(caminhoArquivo);
-//
-//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(),bmOptions);
-
-//        Picasso.get()
-//                .load(Uri.parse(selectedImagePath))
-//                .memoryPolicy(MemoryPolicy.NO_CACHE)
-//                .fit()
-//                .placeholder(R.drawable.common_full_open_on_phone)
-//                .centerCrop()
-//                .into(imageView);
-
     }
 
     @Override

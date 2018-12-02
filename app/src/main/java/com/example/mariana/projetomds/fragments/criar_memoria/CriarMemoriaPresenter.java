@@ -17,6 +17,7 @@ import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -42,29 +43,29 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     criarMemoriaView.carregaImagem(imageBitmap);
-
-//                    Uri tempUri = getImageUri(context, imageBitmap);
-//                    criarMemoriaView.carregaImagem(getRealPathFromURI(tempUri));
                 }
                 break;
 
-//            case CODIGO_GALERIA:
-//                if(Activity.RESULT_OK == resultCode){
-//                    String caminhoDaImagem = getRealPathFromURI(data.getData());
-//                    criarMemoriaView.carregaImagem(caminhoDaImagem);
-//                }
-//
-//                break;
-        }
+            case CODIGO_GALERIA:
+                if(Activity.RESULT_OK == resultCode){
+                    Uri returnUri = data.getData();
+                    Bitmap caminhoDaImagem = null;
+                    try {
+                        caminhoDaImagem = MediaStore.Images.Media.getBitmap(context.getContentResolver(), returnUri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
+                    criarMemoriaView.carregaImagem(caminhoDaImagem);
+                }
+
+                break;
+        }
     }
 
     @Override
     public void tiraFoto() {
         Intent tiraFoto = new Intent();
-
-        Log.d("TO LOC", "to aqui dentro tirar foto");
-
         Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         criarMemoriaView.abreActivity(intentCamera, CODIGO_CAMERA);
@@ -102,24 +103,8 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         MemoriaDAO memoriaDAO = new MemoriaDAO(context);
 
         memoriaDAO.insert(memoria);
-
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
 
-    //pega o path(caminho do arquivo) da Uri retornada no onActivityResult
-    private String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Audio.Media.DATA };
-        CursorLoader loader = new CursorLoader(context, contentUri, proj, null, null, null);
-        Cursor cursor = loader.loadInBackground();
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
 
 }
