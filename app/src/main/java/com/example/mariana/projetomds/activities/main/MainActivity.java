@@ -1,11 +1,13 @@
 package com.example.mariana.projetomds.activities.main;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements MainView{
         ButterKnife.bind(this);
 
         mainPresenter = new MainPresenter(this);
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+
 
         AbasAdapter adapter = new AbasAdapter( getSupportFragmentManager() );
         adapter.adicionar( new MapaActivity() , "");

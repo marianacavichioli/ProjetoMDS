@@ -35,6 +35,7 @@ public class MemoriaDAO {
         values.put("latitude", memoria.getLatitude());
         values.put("longitude", memoria.getLongitude());
         values.put("data", memoria.getData());
+        values.put("descricao", memoria.getDescricao());
 
 //        Bitmap photo = memoria.getImagem();
 //        ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -60,7 +61,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "latitude", "longitude", "data", "imagem"};
+        String[] campos = {"id", "nome", "descricao", "local", "latitude", "longitude", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, null, null, null, null, "nome");
 
@@ -68,13 +69,14 @@ public class MemoriaDAO {
 
             while(cursor.moveToNext()) {
                 Memoria memoria = new Memoria();
-                memoria.setId(cursor.getInt(0));
-                memoria.setNome(cursor.getString(1));
-                memoria.setLocal(cursor.getString(2));
-                memoria.setLatitude(cursor.getDouble(3));
-                memoria.setLongitude(cursor.getDouble(4));
-                memoria.setData(cursor.getString(5));
-                memoria.setImagem(cursor.getString(6));
+                memoria.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                memoria.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+                memoria.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
+                memoria.setLocal(cursor.getString(cursor.getColumnIndex("local")));
+                memoria.setLatitude(cursor.getDouble(cursor.getColumnIndex("latitude")));
+                memoria.setLongitude(cursor.getDouble(cursor.getColumnIndex("longitude")));
+                memoria.setData(cursor.getString(cursor.getColumnIndex("data")));
+                memoria.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
                 list.add(memoria);
             }
         }
@@ -88,7 +90,7 @@ public class MemoriaDAO {
 
         db = database.getReadableDatabase();
 
-        String[] campos = {"id", "nome", "local", "latitude", "longitude", "data", "imagem"};
+        String[] campos = {"id", "nome", "descricao", "local", "latitude", "longitude", "data", "imagem"};
 
         Cursor cursor = db.query(TABLE, campos, "id=?", new String[] { Integer.toString(id) }, null, null, "nome");
 
@@ -99,13 +101,14 @@ public class MemoriaDAO {
 
         cursor.moveToFirst();
         Memoria memoria = new Memoria();
-        memoria.setId(cursor.getInt(0));
-        memoria.setNome(cursor.getString(1));
-        memoria.setLocal(cursor.getString(2));
-        memoria.setLatitude(cursor.getDouble(3));
-        memoria.setLongitude(cursor.getDouble(4));
-        memoria.setData(cursor.getString(5));
-        memoria.setImagem(cursor.getString(6));
+        memoria.setId(cursor.getInt(cursor.getColumnIndex("id")));
+        memoria.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+        memoria.setLocal(cursor.getString(cursor.getColumnIndex("local")));
+        memoria.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
+        memoria.setLatitude(cursor.getDouble(cursor.getColumnIndex("latitude")));
+        memoria.setLongitude(cursor.getDouble(cursor.getColumnIndex("longitude")));
+        memoria.setData(cursor.getString(cursor.getColumnIndex("data")));
+        memoria.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
 
         db.close();
 

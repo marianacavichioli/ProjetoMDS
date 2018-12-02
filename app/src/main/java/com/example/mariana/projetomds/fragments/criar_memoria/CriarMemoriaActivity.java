@@ -1,5 +1,6 @@
 package com.example.mariana.projetomds.fragments.criar_memoria;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
@@ -8,6 +9,7 @@ import android.location.Location;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,7 +85,9 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
         String mLocal = getAddress(localizacaoAtual.getLatitude(), localizacaoAtual.getLongitude());
         if(mLocal==null){
             mLocal = "";
-        }
+     }
+
+       // String mLocal = "";
         criarMemoriaPresenter.cadastrar(titulo.getText().toString(), descricao.getText().toString(), selectedImagePath, mLocal, localizacaoAtual.getLatitude(), localizacaoAtual.getLongitude());
         imageView.setImageBitmap(null);
         titulo.setText("");

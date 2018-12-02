@@ -31,6 +31,7 @@ public class Database extends SQLiteOpenHelper{
         String sql = "CREATE TABLE memoria( " +
                 "id integer primary key autoincrement, " +
                 "nome text, " +
+                "descricao text, " +
                 "local text, " +
                 "latitude real, " +
                 "longitude real, " +

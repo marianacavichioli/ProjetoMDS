@@ -1,6 +1,7 @@
 package com.example.mariana.projetomds.fragments.criar_memoria;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,13 +11,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
 import android.util.Log;
 
+import com.example.mariana.projetomds.activities.main.MainActivity;
 import com.example.mariana.projetomds.persist.dao.MemoriaDAO;
 import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -43,7 +47,14 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
                 if(Activity.RESULT_OK == resultCode){
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    criarMemoriaView.carregaImagem(imageBitmap);
+
+                    Uri tempUri = getImageUri(context, imageBitmap);
+
+                    String finalFile = (getRealPathFromURI(tempUri));
+
+                    Log.d("data", "to aqui caminho" + finalFile);
+
+                    criarMemoriaView.carregaImagemGaleria(imageBitmap, finalFile);
                 }
                 break;
 
@@ -120,6 +131,13 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         String result = cursor.getString(column_index);
         cursor.close();
         return result;
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 
 

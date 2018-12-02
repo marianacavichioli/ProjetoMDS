@@ -55,11 +55,12 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        Log.d("IMAGEM", memoria.getImagem());
+        Log.d("data", "to aqui " + memoria.getDescricao());
+        Log.d("data", "to aqui imagem" + memoria.getImagem());
 
         File imgFile = new  File(memoria.getImagem());
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile("file://" + imgFile.getPath());
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             imagem.setImageBitmap(myBitmap);
         }
 
