@@ -42,7 +42,6 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
     CriarMemoriaPresenter criarMemoriaPresenter;
 
     Location localizacaoAtual;
-//    PlaceDetectionClient mPlaceDetectionClient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +50,6 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
         ButterKnife.bind(this, view);
 
         criarMemoriaPresenter = new CriarMemoriaPresenter(getActivity(), this);
-
-        // Construct a PlaceDetectionClient.
-//        mPlaceDetectionClient = Places.getPlaceDetectionClient(getActivity());
 
         return view;
     }

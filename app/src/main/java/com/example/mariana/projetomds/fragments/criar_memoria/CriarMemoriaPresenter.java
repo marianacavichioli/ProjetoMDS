@@ -18,6 +18,7 @@ import com.example.mariana.projetomds.persist.model.Memoria;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -90,6 +91,9 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
 
         Date currentTime = Calendar.getInstance().getTime();
 
+        String curTime = DateFormat.getDateInstance().format(currentTime);
+        Log.d("TIME", curTime);
+
         Memoria memoria = new Memoria();
         memoria.setNome(titulo);
         memoria.setDescricao(descricao);
@@ -97,7 +101,7 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         memoria.setLatitude(latitude);
         memoria.setLongitude(longitude);
         memoria.setImagem(imagePath);
-        memoria.setData(currentTime.toString());
+        memoria.setData(curTime);
 
         MemoriaDAO memoriaDAO = new MemoriaDAO(context);
 
