@@ -46,7 +46,7 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
 
     public static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     public static final int DEFAULT_ZOOM = 16;
-    private final LatLng mDefaultLocation = new LatLng(-121.97972238, -47.88054228);
+    private final LatLng mDefaultLocation = new LatLng(-21.97972238, -47.88054228);
 
     private boolean mLocationPermissionGranted;
     private Location mLastKnownLocation;
