@@ -7,6 +7,7 @@ import android.location.Geocoder;
 import android.location.Location;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,9 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     @BindView(R.id.descricao)
     EditText descricao;
+
+    @BindView(R.id.parent)
+    ViewGroup parent;
 
     Bitmap selectedImagePath;
 
@@ -81,6 +85,9 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
             mLocal = "";
         }
         criarMemoriaPresenter.cadastrar(titulo.getText().toString(), descricao.getText().toString(), selectedImagePath, mLocal, localizacaoAtual.getLatitude(), localizacaoAtual.getLongitude());
+        imageView.setImageBitmap(null);
+        titulo.setText("");
+        descricao.setText("");
     }
 
     @Override
