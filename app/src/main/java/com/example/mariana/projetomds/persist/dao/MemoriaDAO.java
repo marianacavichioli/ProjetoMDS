@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import com.example.mariana.projetomds.persist.model.Memoria;
 import com.example.mariana.projetomds.persist.util.Database;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class MemoriaDAO {
@@ -32,7 +35,14 @@ public class MemoriaDAO {
         values.put("latitude", memoria.getLatitude());
         values.put("longitude", memoria.getLongitude());
         values.put("data", memoria.getData());
-        values.put("imagem", memoria.getImagem());
+
+        Bitmap photo = memoria.getImagem();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] bArray = bos.toByteArray();
+
+        values.put("imagem", bArray);
+
 
         long result = db.insert(TABLE, null, values);
         db.close();
@@ -64,7 +74,7 @@ public class MemoriaDAO {
                 memoria.setLatitude(cursor.getDouble(3));
                 memoria.setLongitude(cursor.getDouble(4));
                 memoria.setData(cursor.getString(5));
-                memoria.setImagem(cursor.getString(6));
+                //memoria.setImagem(cursor.getBlob(6));
                 list.add(memoria);
             }
         }
@@ -95,7 +105,7 @@ public class MemoriaDAO {
         memoria.setLatitude(cursor.getDouble(3));
         memoria.setLongitude(cursor.getDouble(4));
         memoria.setData(cursor.getString(5));
-        memoria.setImagem(cursor.getString(6));
+        //memoria.setImagem(cursor.getBlob(6));
 
         db.close();
 

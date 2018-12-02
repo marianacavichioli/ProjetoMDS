@@ -86,8 +86,7 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
     }
 
     @Override
-    public void cadastrar(String titulo, String descricao, String imagePath, String local, double latitude, double longitude) {
-
+    public void cadastrar(String titulo, String descricao, Bitmap imagePath, String local, double latitude, double longitude) {
 
         Date currentTime = Calendar.getInstance().getTime();
 

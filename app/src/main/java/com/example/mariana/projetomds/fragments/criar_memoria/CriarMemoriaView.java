@@ -14,7 +14,7 @@ public interface CriarMemoriaView {
         void verificaResultado(int requestCode, int resultCode, Intent data);
         void tiraFoto();
         void abrirGaleria();
-        void cadastrar(String titulo, String descricao, String imagePath, String local, double latitude, double longitude);
+        void cadastrar(String titulo, String descricao, Bitmap imagePath, String local, double latitude, double longitude);
     }
 }
 

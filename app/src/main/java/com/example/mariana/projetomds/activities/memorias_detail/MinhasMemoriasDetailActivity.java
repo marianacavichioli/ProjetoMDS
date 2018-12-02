@@ -2,9 +2,11 @@ package com.example.mariana.projetomds.activities.memorias_detail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,14 +53,8 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        //imagem.setText(memoria.getImagem());
-        Picasso.get()
-                .load(memoria.getImagem())
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .fit()
-                .placeholder(R.drawable.common_full_open_on_phone)
-                .centerCrop()
-                .into(imagem);
+        imagem.setImageBitmap(memoria.getImagem());
+
     }
 
     @Override

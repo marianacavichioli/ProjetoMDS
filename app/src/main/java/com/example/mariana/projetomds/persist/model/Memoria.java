@@ -1,9 +1,11 @@
 package com.example.mariana.projetomds.persist.model;
 
+import android.graphics.Bitmap;
+
 public class Memoria {
     private int id;
     private String nome;
-    private String imagem;
+    private Bitmap imagem;
     private String local; // pegar a cidade (Place)
     private double latitude;
     private double longitude;
@@ -22,11 +24,10 @@ public class Memoria {
     }
     public void setNome(String nome){this.nome = nome;}
 
-    public String getImagem () {
+    public Bitmap getImagem () {
         return imagem;
     }
-    public void setImagem(String imagem){this.imagem = imagem;}
-
+    public void setImagem(Bitmap imagem){this.imagem = imagem;}
 
     public String getLocal() {
         return local;
@@ -57,4 +58,6 @@ public class Memoria {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+
 }
