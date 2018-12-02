@@ -35,7 +35,7 @@ public class Database extends SQLiteOpenHelper{
                 "latitude real, " +
                 "longitude real, " +
                 "data text, " +
-                "imagem blob )";
+                "imagem text )";
         return sql;
     }
 }

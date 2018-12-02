@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 public class Memoria {
     private int id;
     private String nome;
-    private Bitmap imagem;
+    private String imagem;
     private String local; // pegar a cidade (Place)
     private double latitude;
     private double longitude;
@@ -24,10 +24,10 @@ public class Memoria {
     }
     public void setNome(String nome){this.nome = nome;}
 
-    public Bitmap getImagem () {
+    public String getImagem () {
         return imagem;
     }
-    public void setImagem(Bitmap imagem){this.imagem = imagem;}
+    public void setImagem(String imagem){this.imagem = imagem;}
 
     public String getLocal() {
         return local;

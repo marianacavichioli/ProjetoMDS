@@ -41,7 +41,7 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
     @BindView(R.id.parent)
     ViewGroup parent;
 
-    Bitmap selectedImagePath;
+    String selectedImagePath;
 
     CriarMemoriaPresenter criarMemoriaPresenter;
 
@@ -92,7 +92,12 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
 
     @Override
     public void carregaImagem(Bitmap caminhoArquivo) {
-        selectedImagePath = caminhoArquivo;
+        imageView.setImageBitmap(caminhoArquivo);
+    }
+
+    @Override
+    public void carregaImagemGaleria(Bitmap caminhoArquivo, String path) {
+        selectedImagePath = path;
         imageView.setImageBitmap(caminhoArquivo);
     }
 

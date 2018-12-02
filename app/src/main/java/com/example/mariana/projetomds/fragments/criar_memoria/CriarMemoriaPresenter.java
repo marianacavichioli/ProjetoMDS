@@ -50,6 +50,9 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
             case CODIGO_GALERIA:
                 if(Activity.RESULT_OK == resultCode){
                     Uri returnUri = data.getData();
+
+                    String path = getRealPathFromURI(returnUri);
+
                     Bitmap caminhoDaImagem = null;
                     try {
                         caminhoDaImagem = MediaStore.Images.Media.getBitmap(context.getContentResolver(), returnUri);
@@ -57,7 +60,7 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
                         e.printStackTrace();
                     }
 
-                    criarMemoriaView.carregaImagem(caminhoDaImagem);
+                    criarMemoriaView.carregaImagemGaleria(caminhoDaImagem, path);
                 }
 
                 break;
@@ -87,7 +90,7 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
     }
 
     @Override
-    public void cadastrar(String titulo, String descricao, Bitmap imagePath, String local, double latitude, double longitude) {
+    public void cadastrar(String titulo, String descricao, String imagePath, String local, double latitude, double longitude) {
 
         Date currentTime = Calendar.getInstance().getTime();
 
@@ -106,6 +109,17 @@ public class CriarMemoriaPresenter implements CriarMemoriaView.Presenter{
         MemoriaDAO memoriaDAO = new MemoriaDAO(context);
 
         memoriaDAO.insert(memoria);
+    }
+
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        CursorLoader loader = new CursorLoader(context, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 
 

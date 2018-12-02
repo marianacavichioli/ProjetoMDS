@@ -36,12 +36,12 @@ public class MemoriaDAO {
         values.put("longitude", memoria.getLongitude());
         values.put("data", memoria.getData());
 
-        Bitmap photo = memoria.getImagem();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] bArray = bos.toByteArray();
+//        Bitmap photo = memoria.getImagem();
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+//        byte[] bArray = bos.toByteArray();
 
-        values.put("imagem", bArray);
+        values.put("imagem", memoria.getImagem());
 
 
         long result = db.insert(TABLE, null, values);
@@ -74,7 +74,7 @@ public class MemoriaDAO {
                 memoria.setLatitude(cursor.getDouble(3));
                 memoria.setLongitude(cursor.getDouble(4));
                 memoria.setData(cursor.getString(5));
-                //memoria.setImagem(cursor.getBlob(6));
+                memoria.setImagem(cursor.getString(6));
                 list.add(memoria);
             }
         }
@@ -105,7 +105,7 @@ public class MemoriaDAO {
         memoria.setLatitude(cursor.getDouble(3));
         memoria.setLongitude(cursor.getDouble(4));
         memoria.setData(cursor.getString(5));
-        //memoria.setImagem(cursor.getBlob(6));
+        memoria.setImagem(cursor.getString(6));
 
         db.close();
 

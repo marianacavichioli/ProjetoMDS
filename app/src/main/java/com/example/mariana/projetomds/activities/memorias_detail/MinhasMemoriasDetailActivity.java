@@ -3,6 +3,7 @@ package com.example.mariana.projetomds.activities.memorias_detail;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.mariana.projetomds.persist.model.Memoria;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +55,13 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        imagem.setImageBitmap(memoria.getImagem());
+        Log.d("IMAGEM", memoria.getImagem());
+
+        File imgFile = new  File(memoria.getImagem());
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile("file://" + imgFile.getPath());
+            imagem.setImageBitmap(myBitmap);
+        }
 
     }
 

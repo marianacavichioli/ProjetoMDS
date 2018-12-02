@@ -7,6 +7,9 @@ public interface CriarMemoriaView {
 
     interface View {
         void carregaImagem(Bitmap caminhoArquivo);
+
+        void carregaImagemGaleria(Bitmap caminhoArquivo, String path);
+
         void abreActivity(Intent intent, Integer codigo);
     }
 
@@ -14,7 +17,7 @@ public interface CriarMemoriaView {
         void verificaResultado(int requestCode, int resultCode, Intent data);
         void tiraFoto();
         void abrirGaleria();
-        void cadastrar(String titulo, String descricao, Bitmap imagePath, String local, double latitude, double longitude);
+        void cadastrar(String titulo, String descricao, String imagePath, String local, double latitude, double longitude);
     }
 }
 
