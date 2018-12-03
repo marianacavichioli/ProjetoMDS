@@ -109,27 +109,4 @@ public class MemoriaDAO {
         return memoria;
     }
 
-    public Memoria update(Memoria memoria) {
-
-        db = database.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("nome", memoria.getNome());
-        values.put("local", memoria.getLocal());
-        values.put("latitude", memoria.getLatitude());
-        values.put("longitude", memoria.getLongitude());
-        values.put("data", memoria.getData());
-        values.put("descricao", memoria.getDescricao());
-        values.put("imagem", memoria.getImagem());
-
-
-        long result = db.update(TABLE, values, "id=?", new String[] { Integer.toString(memoria.getId()) });
-        db.close();
-
-        if(result == -1)
-            return null;
-
-        return memoria;
-    }
-
 }

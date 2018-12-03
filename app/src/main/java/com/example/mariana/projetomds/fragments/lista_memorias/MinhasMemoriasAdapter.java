@@ -78,14 +78,6 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
 
         }
 
-        @OnLongClick(R.id.container)
-        boolean onLongItemClick(View view){
-            if(onRecyclerViewSelectedMemorias != null)
-                onRecyclerViewSelectedMemorias.onLongClick(view, getAdapterPosition());
-
-            return true;
-        }
-
     }
     public void setOnRecyclerViewSelectedMemorias(OnRecyclerViewSelectedMemorias onRecyclerViewSelectedMemorias){
         this.onRecyclerViewSelectedMemorias = onRecyclerViewSelectedMemorias;

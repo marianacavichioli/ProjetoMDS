@@ -64,12 +64,6 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
                 startActivity(intent);
             }
 
-            @Override
-            public void onLongClick(View view, int adapterPosition) {
-                memoriaDAO.update(memoria);
-                Toast.makeText(getActivity(), "Memória excluida com sucesso", Toast.LENGTH_LONG).show();
-            }
-
         });
 
         rvMemorias.setAdapter(memoriasAdapter);

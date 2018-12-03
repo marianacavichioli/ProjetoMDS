@@ -129,7 +129,10 @@ public class CriarMemoriaActivity extends Fragment implements CriarMemoriaView.V
             // Toast.LENGTH_SHORT).show();
 
             // TennisAppActivity.showDialog(add);
-            return obj.getLocality();
+            if(obj.getLocality()!= null){
+                return obj.getLocality();
+            }
+            return obj.getSubAdminArea();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
