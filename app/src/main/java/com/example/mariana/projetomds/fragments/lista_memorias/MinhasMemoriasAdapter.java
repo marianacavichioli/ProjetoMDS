@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mariana.projetomds.R;
 import com.example.mariana.projetomds.persist.model.Memoria;
@@ -15,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 
 public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAdapter.ViewHolder>{
@@ -74,6 +76,14 @@ public class MinhasMemoriasAdapter extends RecyclerView.Adapter<MinhasMemoriasAd
             if(onRecyclerViewSelectedMemorias != null)
                 onRecyclerViewSelectedMemorias.onClick(view, getAdapterPosition());
 
+        }
+
+        @OnLongClick(R.id.container)
+        boolean onLongItemClick(View view){
+            if(onRecyclerViewSelectedMemorias != null)
+                onRecyclerViewSelectedMemorias.onLongClick(view, getAdapterPosition());
+
+            return true;
         }
 
     }

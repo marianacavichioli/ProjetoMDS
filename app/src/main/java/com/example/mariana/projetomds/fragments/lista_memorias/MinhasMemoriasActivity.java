@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.mariana.projetomds.activities.memorias_detail.MinhasMemoriasDetailActivity;
 import com.example.mariana.projetomds.R;
@@ -29,6 +30,8 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
     MinhasMemoriasPresenter minhasMemoriasPresenter;
 
     Context context;
+    Memoria memoria = new Memoria();
+    MemoriaDAO memoriaDAO = new MemoriaDAO(context);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -49,7 +52,7 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
     public void updateList(final List<Memoria> memoriasList) {
 
         //seta o adapter
-        MinhasMemoriasAdapter memoriasAdapter = new MinhasMemoriasAdapter(memoriasList, context); //Context está certo?
+        MinhasMemoriasAdapter memoriasAdapter = new MinhasMemoriasAdapter(memoriasList, context);
 
         memoriasAdapter.setOnRecyclerViewSelectedMemorias(new OnRecyclerViewSelectedMemorias() {
             @Override
@@ -59,6 +62,12 @@ public class MinhasMemoriasActivity extends Fragment implements MinhasMemoriasVi
                         (getActivity(), MinhasMemoriasDetailActivity.class);
                 intent.putExtra("memoria_id", memoriasList.get(position).getId());
                 startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int adapterPosition) {
+                memoriaDAO.update(memoria);
+                Toast.makeText(getActivity(), "Memória excluida com sucesso", Toast.LENGTH_LONG).show();
             }
 
         });

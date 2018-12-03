@@ -36,12 +36,6 @@ public class MemoriaDAO {
         values.put("longitude", memoria.getLongitude());
         values.put("data", memoria.getData());
         values.put("descricao", memoria.getDescricao());
-
-//        Bitmap photo = memoria.getImagem();
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-//        byte[] bArray = bos.toByteArray();
-
         values.put("imagem", memoria.getImagem());
 
 
@@ -111,6 +105,29 @@ public class MemoriaDAO {
         memoria.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
 
         db.close();
+
+        return memoria;
+    }
+
+    public Memoria update(Memoria memoria) {
+
+        db = database.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("nome", memoria.getNome());
+        values.put("local", memoria.getLocal());
+        values.put("latitude", memoria.getLatitude());
+        values.put("longitude", memoria.getLongitude());
+        values.put("data", memoria.getData());
+        values.put("descricao", memoria.getDescricao());
+        values.put("imagem", memoria.getImagem());
+
+
+        long result = db.update(TABLE, values, "id=?", new String[] { Integer.toString(memoria.getId()) });
+        db.close();
+
+        if(result == -1)
+            return null;
 
         return memoria;
     }
