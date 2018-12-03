@@ -7,13 +7,15 @@
     android:id="@+id/container"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="16dp"
-    android:layout_marginLeft="10dp"
+    android:layout_marginLeft="16dp"
     android:layout_marginRight="5dp">
 
     <TextView
         android:id="@+id/nome_memoria"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,13 +25,15 @@
         <TextView
             android:id="@+id/local"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"/>
+            android:layout_marginLeft="150dp"
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 </LinearLayout>

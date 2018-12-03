@@ -33,6 +33,9 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
     TextView data;
     @BindView(R.id.imagem)
     ImageView imagem;
+    @BindView(R.id.descricao)
+    TextView descricao;
+
 
     int memoriaId;
     MinhasMemoriasDetailPresenter minhasMemoriasDetailPresenter;
@@ -45,18 +48,18 @@ public class MinhasMemoriasDetailActivity extends AppCompatActivity implements M
         ButterKnife.bind(this);
         minhasMemoriasDetailPresenter = new MinhasMemoriasDetailPresenter(this);
 
-
         Intent intent = getIntent();
         memoriaId = intent.getIntExtra("memoria_id", -1);
         minhasMemoriasDetailPresenter.getMemoriasDetails(memoriaId, this);
+
     }
 
     @Override
     public void showDetails(Memoria memoria) {
         local.setText(memoria.getLocal());
         data.setText(memoria.getData());
-        Log.d("data", "to aqui " + memoria.getDescricao());
-        Log.d("data", "to aqui imagem" + memoria.getImagem());
+        descricao.setText(memoria.getDescricao());
+        setTitle(memoria.getNome());
 
         File imgFile = new  File(memoria.getImagem());
         if(imgFile.exists()){

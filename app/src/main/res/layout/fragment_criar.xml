@@ -13,12 +13,12 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="280dp">
 
             <ImageView
                 android:id="@+id/imagem_memoria"
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
+                android:layout_height="226dp"
                 android:background="@color/cinza"/>
 
             <android.support.design.widget.FloatingActionButton
@@ -94,9 +94,9 @@
                 android:id="@+id/botao_salvar"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                android:background="@color/colorAccent"
+                android:background="@drawable/botao_arredondado"
                 android:textColor="@color/white"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 </ScrollView>
