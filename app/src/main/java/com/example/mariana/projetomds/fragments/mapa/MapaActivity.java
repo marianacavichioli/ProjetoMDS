@@ -77,7 +77,6 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        Log.d("PERMISSION LOC", "to aqui vendo");
         mMapView = (MapView) mView.findViewById(R.id.map);
         if (mMapView != null) {
             mMapView.onCreate(null);
@@ -123,18 +122,15 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
                         if (task.isSuccessful()) {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = task.getResult();
-//                            Log.d("PERMISSION LOC", "eh pra dar");
 
                             if (mLastKnownLocation != null) {
                                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(mLastKnownLocation.getLatitude(),
                                                 mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-//                                Log.d("PERMISSION LOC", "deuu");
                             }
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
-//                            Log.d("PERMISSION LOC", "nao deu acho nao");
 
                             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                             mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -176,14 +172,12 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
 //        Log.d("PERMISSION LOC", "opa to no result");
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-//                Log.d("PERMISSION LOC", "opa to no caso certo do result ");
 
                 // If request is cancelled, the result arrays are empty.
 
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true;
-//                    Log.d("PERMISSION LOC", "opa agr tudo bem");
                 }
             }
         }
@@ -196,10 +190,8 @@ public class MapaActivity extends Fragment implements OnMapReadyCallback, MapaVi
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;
-//            Log.d("PERMISSION LOC", "permitido");
         } else {
             // Show rationale and request permission.
-//            Log.d("PERMISSION LOC", "nao permitido");
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
